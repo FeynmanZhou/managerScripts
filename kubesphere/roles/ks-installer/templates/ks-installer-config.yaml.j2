@@ -16,7 +16,7 @@ data:
 
     plugins:
       defaultStorage: "{{ defaultStorage | default("openebs-hostpath") }}"    # "csi-qingcloud"
-{% if defaultStorage is defined and devops.enabled == 'csi-qingcloud' %}
+{% if defaultStorage is defined and defaultStorage == 'csi-qingcloud' %}
       qingcloud_access_key_id: {{ qingcloud_access_key_id }}
       qingcloud_secret_access_key: {{ qingcloud_secret_access_key }}
       qingcloud_zone: {{ qingcloud_zone }}

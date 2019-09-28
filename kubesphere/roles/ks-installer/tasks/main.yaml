@@ -5,6 +5,29 @@
     src: "ks-installer"
     dest: "{{ kubesphere_dir }}/"
 
+- name: ks-installer | Createing system namespaces
+  shell: >
+    kubectl create ns {{ item }}
+  loop:
+    - kubesphere-system
+    - kubesphere-monitoring-system
+
+- name: ks-installer | Create the Secret of CA
+  shell: >
+    kubectl -n kubesphere-system create secret generic kubesphere-ca
+    --from-file=ca.crt=/etc/kubernetes/pki/ca.crt
+    --from-file=ca.key=/etc/kubernetes/pki/ca.key
+  register: import
+  failed_when: "import.stderr and 'AlreadyExists' not in import.stderr"
+
+- name: ks-monitor | Creating kube-etcd-client-certs-secret
+  command: >
+    {{ bin_dir }}/kubectl -n kubesphere-monitoring-system create secret generic kube-etcd-client-certs
+    --from-file=etcd-client-ca.crt={{ etcd_client_ca_crt }}
+    --from-file=etcd-client.crt={{ etcd_client_crt }}
+    --from-file=etcd-client.key={{ etcd_client_key }}
+  register: import
+  failed_when: "import.stderr and 'AlreadyExists' not in import.stderr"
 
 - name: ks-installer | Creating manifests
   template:
