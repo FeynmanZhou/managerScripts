@@ -23,15 +23,11 @@ qingcloud_vxnet_id: SHOULD_BE_REPLACED
 # Storage configuration
 ######################################################################
 ## https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/storage-configuration
-
-# Local volume provisioner deployment(Only all-in-one)
-local_volume_provisioner_enabled: true
-local_volume_provisioner_storage_class: local
-local_volume_is_default_class: true
+defaultStorage: "openebs-hostpath"   # "csi-qingcloud"
 
 # QingCloud CSI 
-qingcloud_csi_enabled: false
-qingcloud_csi_is_default_class: false
+#qingcloud_csi_enabled: false
+#qingcloud_csi_is_default_class: false
 #The type of volume in QingCloud IaaS platform. 
 # 0 represents high performance volume
 # 3 respresents super high performance volume.
@@ -49,7 +45,7 @@ qingcloud_disk_replica: 2
 
 # Ceph_rbd  deployment
 ceph_rbd_enabled: false
-ceph_rbd_is_default_class: false
+#ceph_rbd_is_default_class: false
 ceph_rbd_storage_class: rbd
 # e.g. ceph_rbd_monitors:
 #   - 172.24.0.1:6789
@@ -70,7 +66,7 @@ ceph_rbd_imageFormat: 1
 
 # NFS-Client provisioner deployment
 nfs_client_enable: false
-nfs_client_is_default_class: false
+#nfs_client_is_default_class: false
 # Hostname of the NFS server(ip or hostname)
 nfs_server: SHOULD_BE_REPLACED
 # Basepath of the mount point to be used
@@ -121,10 +117,10 @@ jwt_admin_key: SHOULD_BE_REPLACED
 # Cluster configuration
 ######################################################################
 ## Change this to use another Kubernetes version
-ks_version: 2.1.0-dev
-kube_version: v1.13.5
+ks_version: 2.1.0
+kube_version: v1.15.3
 etcd_version: v3.2.18
-openpitrix_version: v0.3.5
+#openpitrix_version: v0.3.5
 
 ks_image_pull_policy: IfNotPresent
 # Choose network plugin (calico or flannel)
@@ -146,10 +142,6 @@ kube_proxy_mode: ipvs
 # default is equal to application default
 kubelet_max_pods: 110
 
-# DNS configuration.
-# Can be kubedns, coredns
-dns_mode: coredns
-
 # Access Port of KubeSphere   
 # 30000-32767 (30180/30280/30380 are not allowed)
 console_port: 30880 
@@ -164,54 +156,67 @@ disableMultiLogin: true
 
 #Docker periodic cleaning time (Can be reboot/yearly/annually/monthly/weekly/daily/hourly)
 periodic_cleaning_time: weekly
-## Add other registry
-docker_registry_mirrors:
-  - https://registry.docker-cn.com
 
 #Etcd periodic backup time (Specify a period in minutes)
 etcd_backup_period: 30
 keep_backup_number: 5
 etcd_backup_dir: "/var/backups/kube_etcd"
 
+#CommonComponent
+mysql_volume_size: 20Gi
+minio_volume_size: 20Gi
+etcd_volume_size: 20Gi
+openldap_volume_size: 2Gi
+redis_volume_size: 2Gi
+
+
 # Monitoring
-prometheus_memory_size: 400Mi
+monitoring_enabled: True
+prometheus_replica: 2
+prometheus_memory_request: 400Mi
 prometheus_volume_size: 20Gi
+grafana_enabled: False
 
 # Logging
-keep_log_days: 7
-
-kibana_enable: false
+logging_enabled: True
+elasticsearch_master_replica: 1
+elasticsearch_data_replica: 2
 elasticsearch_volume_size: 20Gi
+log_max_age: 7
+elk_prefix: logstash
+kibana_enabled: False
+logsidecar_injector_enabled: False
 
-# Notification (Including Jenkins Notify)
-## Please replace following configuration with your own mail server information.
-EMAIL_SMTP_HOST: mail.example.com
-EMAIL_SMTP_PORT: 25
-EMAIL_FROM_ADDR: admin@example.com
-EMAIL_FROM_NAME: KubeSphere
-EMAIL_FROM_PASS: password
-EMAIL_USE_SSL: false
 
-# Jenkins deployment
-jenkins_memory_lim: 8Gi 
-jenkins_memory_req: 4Gi
-Java_Opts: -Xms3g -Xmx6g -XX:MaxPermSize=512m -XX:MaxRAM=8g
-JenkinsLocationUrl: jenkins.devops.kubesphere.local
-
-# harbor deployment
-harbor_enable: false
-harbor_domain: harbor.devops.kubesphere.local
-
-#GitLab deployment
-gitlab_enable: false
-gitlab_hosts_domain: devops.kubesphere.local
-
-## sonarqube
-sonarqube_enable: true
-## If you already have a sonar server,  please fill in the following parameters.
-## If not, a sonarqube will be installed by default.
+#DevOps
+devops_enabled: False
+jenkins_memory_lim: "8Gi"
+jenkins_memory_req: "4Gi"
+jenkins_volume_size: "8Gi"
+sonarqube_enabled: False
 #sonar_server_url: SHOULD_BE_REPLACED
 #sonar_server_token: SHOULD_BE_REPLACED
+
+
+#Metrics-Server
+metrics_server_enabled: False
+#OpenPitrix
+openpitrix_enabled: False
+# ServiceMesh:
+servicemesh_enabled: False
+# Notification
+notification_enabled: False
+# Alerting
+alerting_enabled: False
+
+
+# Harbor
+harbor_enable: False
+harbor_domain: harbor.devops.kubesphere.local
+# GitLab
+gitlab_enable: False
+gitlab_hosts_domain: devops.kubesphere.local
+
 
 ## Container Engine Acceleration
 ## Use nvidia gpu acceleration in containers

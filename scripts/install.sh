@@ -194,12 +194,10 @@ function all-in-one(){
 
   ansible-playbook -i $BASE_FOLDER/../k8s/inventory/local/hosts.ini $BASE_FOLDER/../kubesphere/kubesphere.yml \
                    -b \
-                   -e logging_enable=true \
+                   -e logging_enabled=True \
                    -e is_allinone=true \
                    -e prometheus_replica=1 \
                    -e ks_console_replicas=1 \
-                   -e JavaOpts_Xms='-Xms512m' \
-                   -e JavaOpts_Xmx='-Xmx512m' \
                    -e jenkins_memory_lim="2Gi" \
                    -e jenkins_memory_req="800Mi" \
                    -e elasticsearch_data_replica=1
@@ -250,7 +248,7 @@ function multi-node(){
   echo "2. Installing Kubernetes"
   echo "*********************************************"
 
-  ansible-playbook -i $BASE_FOLDER/../k8s/inventory/my_cluster/hosts.ini $BASE_FOLDER/../k8s/cluster.yml -b -e local_volume_provisioner_enabled=false
+  ansible-playbook -i $BASE_FOLDER/../k8s/inventory/my_cluster/hosts.ini $BASE_FOLDER/../k8s/cluster.yml -b
   if [[ $? -eq 0 ]]; then
     #statements
     str="successsful!"
@@ -268,9 +266,7 @@ function multi-node(){
   echo "3. Installing KubeSphere"
   echo "*********************************************"
 
-  ansible-playbook -i $BASE_FOLDER/../k8s/inventory/my_cluster/hosts.ini $BASE_FOLDER/../kubesphere/kubesphere.yml \
-                   -b \
-                   -e local_volume_provisioner_enabled=false 
+  ansible-playbook -i $BASE_FOLDER/../k8s/inventory/my_cluster/hosts.ini $BASE_FOLDER/../kubesphere/kubesphere.yml -b
                     
   if [[ $? -eq 0 ]]; then
     #statements

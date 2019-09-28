@@ -1,0 +1,25 @@
+---
+
+- name: ks-installer | Getting ks-installer installation files
+  copy:
+    src: "ks-installer"
+    dest: "{{ kubesphere_dir }}/"
+
+
+- name: ks-installer | Creating manifests
+  template:
+    src: "{{ item.file }}.j2"
+    dest: "{{ kubesphere_dir }}/ks-installer/{{ item.file }}"
+  with_items:
+    - { name: ks-installer-config, file: ks-installer-config.yaml, type: config }
+    - { name: ks-installer-deployment, file: ks-installer-deployment.yaml, type: deploy }
+
+- name: ks-installer | Creating KubeSphere Installer
+  shell: >
+    {{ bin_dir }}/kubectl apply -f {{ kubesphere_dir }}/ks-installer/{{ item }}
+  loop:
+    - ks-installer-config.yaml
+    - ks-installer-deployment.yaml
+  register: import
+  failed_when: "import.stderr and 'AlreadyExists' not in import.stderr"
+
