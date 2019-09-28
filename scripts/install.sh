@@ -213,7 +213,7 @@ function all-in-one(){
     echo "**********************************"
     exit
   fi
-   cat $BASE_FOLDER/../kubesphere/kubesphere_running
+   
 }
 
 function multi-node(){
@@ -280,7 +280,7 @@ function multi-node(){
     echo "**********************************"
     exit
   fi
-  cat $BASE_FOLDER/../kubesphere/kubesphere_running
+  
 
 }
 
