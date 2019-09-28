@@ -31,3 +31,5 @@ sudo python os/get-pip.py
 
 pip install  -r os/requirements.txt
 
+pip install pyopenssl
+
