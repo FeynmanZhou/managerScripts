@@ -46,3 +46,15 @@
   register: import
   failed_when: "import.stderr and 'AlreadyExists' not in import.stderr"
 
+- name: kubesphere-installer is ok
+  shell: >
+     {{ bin_dir }}/kubectl get pod -n kubesphere-system | grep Running
+  register: result
+  until: result.stdout.find("Running") != -1
+  retries: 30
+  delay: 30
+
+- name: show install log
+  shell: >
+    {{ bin_dir }}/kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f
+  until: result.stdout.find("Running") != -1
