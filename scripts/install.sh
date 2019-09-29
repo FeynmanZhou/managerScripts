@@ -213,7 +213,7 @@ function all-in-one(){
     echo "**********************************"
     exit
   fi
-   
+kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f  
 }
 
 function multi-node(){
@@ -280,7 +280,7 @@ function multi-node(){
     echo "**********************************"
     exit
   fi
-  
+  kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f 
 
 }
 
