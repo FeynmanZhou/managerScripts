@@ -323,8 +323,6 @@ else
   done
 fi
 
-kubectl get pod -n kubesphere-system|grep Running
-if [[ $? -eq 0 ]]; then
-    kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f
-    
-fi
+
+kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f   
+
