@@ -11,7 +11,8 @@
   loop:
     - kubesphere-system
     - kubesphere-monitoring-system
-
+  failed_when: "import.stderr and 'AlreadyExists' not in import.stderr"
+  
 - name: ks-installer | Create the Secret of CA
   shell: >
     kubectl -n kubesphere-system create secret generic kubesphere-ca

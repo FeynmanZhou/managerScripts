@@ -5,6 +5,21 @@
   changed_when: false
   environment: {}
 
+- name: Create kube pip dir
+  file:
+    path: "/tmp/pip"
+    mode: "0700"
+    state: directory
+
+- name: Copy admin kubeconfig to root user home
+  copy:
+    src: "get-pip.py"
+    dest: "/tmp/pip/get-pip.py"
+    mode: "0700"    
+
+- name: pip | Installing pip
+  shell: sudo python /tmp/pip/get-pip.py
+  
 - name: GlusterFS | Installing pyOpenSSL
   pip: 
     name: pyOpenSSL
