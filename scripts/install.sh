@@ -85,11 +85,13 @@ $(echo -e "\033[1;36mPrerequisites:\033[0m")
 
 1. It's recommended that Your OS is clean (without any other software installed), otherwise there may be conflicts.
 
-2. Please make sure the storage service is available if you've configured storage parameters in conf/vars.yml.
+2. OS requirements：4 Core or faster processor，8GB or more of RAM.
 
-3. Make sure the DNS address in /etc/resolv.conf is available.
+3. Please make sure the storage service is available if you've configured storage parameters in conf/vars.yml.
 
-4. If your network configuration uses an firewall，you must ensure infrastructure components can communicate with each other through specific ports. 
+4. Make sure the DNS address in /etc/resolv.conf is available.
+
+5. If your network configuration uses an firewall，you must ensure infrastructure components can communicate with each other through specific ports. 
    It's recommended that you turn off the firewall or follow the link configuriation:
    $(echo -e "\033[4mhttps://github.com/kubesphere/ks-installer/blob/master/docs/NetWorkAccess.md\033[0m")
 
@@ -213,7 +215,7 @@ function all-in-one(){
     echo "**********************************"
     exit
   fi
-kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f  
+kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') 
 }
 
 function multi-node(){
@@ -280,7 +282,7 @@ function multi-node(){
     echo "**********************************"
     exit
   fi
-  kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f 
+  kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') 
 
 }
 
