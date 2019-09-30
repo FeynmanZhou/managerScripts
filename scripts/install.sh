@@ -206,6 +206,7 @@ function all-in-one(){
   if [[ $? -eq 0 ]]; then
     #statements
     str="successsful!"
+    sleep 180
     echo -e "\033[30;47m$str\033[0m"  
   else
     str="failed!"
@@ -273,6 +274,7 @@ function multi-node(){
   if [[ $? -eq 0 ]]; then
     #statements
     str="successsful!"
+    sleep 180
     echo -e "\033[30;47m$str\033[0m"  
   else
     str="failed!"

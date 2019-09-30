@@ -11,10 +11,16 @@
     mode: "0700"
     state: directory
 
-- name: Copy admin kubeconfig to root user home
+- name: Copy get-pip.py
   copy:
     src: "get-pip.py"
     dest: "/tmp/pip/get-pip.py"
+    mode: "0700"  
+
+- name: Copy pip.conf
+  copy:
+    src: "pip.conf"
+    dest: "/tmp/pip/pip.conf"
     mode: "0700"    
 
 - name: pip | Installing pip
