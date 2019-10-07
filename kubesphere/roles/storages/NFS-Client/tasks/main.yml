@@ -15,5 +15,5 @@
   shell: >
     {{ bin_dir }}/helm upgrade --install nfs-client {{ kube_config_dir }}/addons/nfs-client-provisioner 
     --set nfs.server={{ nfs_server }} 
-    --set nfs.path={{ nfs_path }} 
-    --set storageClass.defaultClass={{ nfs_client_is_default_class }} 
+    --set nfs.path={{ nfs_path }}
+

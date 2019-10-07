@@ -23,7 +23,9 @@ storageClass:
 
   # Set StorageClass as the default StorageClass
   # Ignored if storageClass.create is false
-  defaultClass: false
+
+  defaultClass: {% if  default_storage is defined and default_storage == "NfsClient" %}true{% else %}false{% endif %}
+
 
   # Set a StorageClass name
   # Ignored if storageClass.create is false

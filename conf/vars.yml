@@ -23,11 +23,9 @@ qingcloud_vxnet_id: SHOULD_BE_REPLACED
 # Storage configuration
 ######################################################################
 ## https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/storage-configuration
-defaultStorage: "openebs-hostpath"   # "csi-qingcloud"
+default_storage: openebs-hostpath   # "csi-qingcloud" "csi-neonsan" "ceph-rbd" "glusterfs" "nfs-client"
 
-# QingCloud CSI 
-#qingcloud_csi_enabled: false
-#qingcloud_csi_is_default_class: false
+# csi-qingcloud
 #The type of volume in QingCloud IaaS platform. 
 # 0 represents high performance volume
 # 3 respresents super high performance volume.
@@ -43,10 +41,10 @@ qingcloud_fsType: ext4
 # 1 means single replica, 2 means multiple replicas. Default 2.
 qingcloud_disk_replica: 2
 
-# Ceph_rbd  deployment
+# ceph-rbd
 ceph_rbd_enabled: false
 #ceph_rbd_is_default_class: false
-ceph_rbd_storage_class: rbd
+#ceph_rbd_storage_class: rbd
 # e.g. ceph_rbd_monitors:
 #   - 172.24.0.1:6789
 #   - 172.24.0.2:6789
@@ -64,7 +62,7 @@ ceph_rbd_fsType: ext4
 ceph_rbd_imageFormat: 1
 #ceph_rbd_imageFeatures: layering
 
-# NFS-Client provisioner deployment
+# nfs-client
 nfs_client_enable: false
 #nfs_client_is_default_class: false
 # Hostname of the NFS server(ip or hostname)
@@ -72,9 +70,9 @@ nfs_server: SHOULD_BE_REPLACED
 # Basepath of the mount point to be used
 nfs_path: SHOULD_BE_REPLACED
 
-# NeonSAN CSI 
+# csi-neonsan
 neonsan_csi_enabled: false
-neonsan_csi_is_default_class: false
+#neonsan_csi_is_default_class: false
 # csi-neonsan container option protocol: TCP or RDMA
 neonsan_csi_protocol: TCP
 # address of the NeonSAN server
@@ -95,10 +93,8 @@ client_io_timeout: 30
 conn_timeout: 8
 open_volume_timeout: 180
 
-# GlusterFS  provisioner deployment
+# glusterfs
 glusterfs_provisioner_enabled: false
-glusterfs_is_default_class: false
-glusterfs_provisioner_storage_class: glusterfs
 glusterfs_provisioner_restauthenabled: true
 # e.g. glusterfs_provisioner_resturl: http://192.168.0.4:8080
 glusterfs_provisioner_resturl: SHOULD_BE_REPLACED
@@ -118,7 +114,7 @@ jwt_admin_key: SHOULD_BE_REPLACED
 ######################################################################
 ## Change this to use another Kubernetes version
 ks_version: 2.1.0
-kube_version: v1.15.3
+kube_version: v1.15.4
 etcd_version: v3.2.18
 #openpitrix_version: v0.3.5
 

@@ -1,10 +1,10 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: {{ ceph_rbd_storage_class }}
+  name: rbd
   annotations:
     storageclass.kubesphere.io/supported_access_modes: '["ReadWriteOnce","ReadOnlyMany"]'
-    storageclass.beta.kubernetes.io/is-default-class: "{% if ceph_rbd_is_default_class %}true{% else %}false{% endif %}"
+    storageclass.beta.kubernetes.io/is-default-class: "{% if default_storage is defined and default_storage == "CephRbd" %}true{% else %}false{% endif %}"
 provisioner: kubernetes.io/rbd
 parameters:
   monitors: {{ ceph_rbd_monitors | join(',') }}

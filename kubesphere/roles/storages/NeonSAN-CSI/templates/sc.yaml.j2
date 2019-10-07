@@ -19,7 +19,7 @@ metadata:
   name: csi-neonsan
   annotations:
     storageclass.kubesphere.io/supported_access_modes: '["ReadWriteOnce"]'
-    storageclass.beta.kubernetes.io/is-default-class: "{% if neonsan_csi_is_default_class %}true{% else %}false{% endif %}"
+    storageclass.beta.kubernetes.io/is-default-class: "{% if  default_storage is defined and default_storage == "csi-neonsan" %}true{% else %}false{% endif %}"
 provisioner: csi-neonsan
 parameters:
   pool: "{{ neonsan_server_pool }}"
