@@ -63,6 +63,10 @@ data:
       elasticsearchVolumeSize: {{ elasticsearch_volume_size }}
       logMaxAge: {{ log_max_age }}
       elkPrefix: {{ elk_prefix }}
+{% if external_es_url is defined and external_es_port is defined %}
+      externalElasticsearchUrl: {{ external_es_url }}
+      externalElasticsearchPort: {{ external_es_port }}
+{% endif %}
       containersLogMountedPath: ""
       kibana:
         enabled: {{ kibana_enabled }}

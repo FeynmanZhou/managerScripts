@@ -182,7 +182,8 @@ log_max_age: 7
 elk_prefix: logstash
 kibana_enabled: false
 logsidecar_injector_enabled: false
-
+#external_es_url: SHOULD_BE_REPLACED
+#external_es_port: SHOULD_BE_REPLACED
 
 #DevOps
 devops_enabled: false
