@@ -15,7 +15,7 @@ data:
       storageClass: "{{ storage_class }}"
 
     plugins:
-      defaultStorage: "{{ defaultStorage | default("openebs-hostpath") }}"    # "csi-qingcloud"
+      defaultStorage: "{{ default_storage | default("openebs-hostpath") }}"    # "csi-qingcloud"
 {% if default_storage is defined and default_storage == 'csi-qingcloud' %}
       qingcloud_access_key_id: {{ qingcloud_access_key_id }}
       qingcloud_secret_access_key: {{ qingcloud_secret_access_key }}
