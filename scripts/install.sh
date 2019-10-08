@@ -307,7 +307,7 @@ function multi-node(){
   fi
 
   result_notes
-  
+
 }
 
 
