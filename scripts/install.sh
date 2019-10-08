@@ -109,6 +109,23 @@ eof
 }
 
 
+function result_notes(){
+   commandline='kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f'
+   cat << eof
+
+$(echo -e "\033[1;36mNOTES:\033[0m")
+
+The ks-installer is running
+
+1. Verify the installation logs and result:
+
+   $commandline
+
+
+eof
+}
+
+
 function config_pip(){
   mkdir ~/.pip
   if [[ ! -f ~/.pip/pip.conf ]]; then
@@ -218,6 +235,9 @@ function all-in-one(){
     echo "**********************************"
     exit
   fi
+
+  result_notes
+
 }
 
 function multi-node(){
@@ -285,6 +305,9 @@ function multi-node(){
     echo "**********************************"
     exit
   fi
+
+  result_notes
+  
 }
 
 
@@ -326,18 +349,6 @@ else
   done
 fi
 
-commandline='kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f'
-cat << eof
 
-$(echo -e "\033[1;36mNOTES:\033[0m")
-
-The ks-installer is running
-
-1. Verify the installation logs and result:
-
-   $commandline
-
-
-eof
 
 
