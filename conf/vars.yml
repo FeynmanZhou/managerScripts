@@ -167,43 +167,43 @@ redis_volume_size: 2Gi
 
 
 # Monitoring
-monitoring_enabled: True
+monitoring_enabled: true
 prometheus_replica: 2
 prometheus_memory_request: 400Mi
 prometheus_volume_size: 20Gi
-grafana_enabled: False
+grafana_enabled: false
 
 # Logging
-logging_enabled: True
+logging_enabled: true
 elasticsearch_master_replica: 1
 elasticsearch_data_replica: 2
 elasticsearch_volume_size: 20Gi
 log_max_age: 7
 elk_prefix: logstash
-kibana_enabled: False
-logsidecar_injector_enabled: False
+kibana_enabled: false
+logsidecar_injector_enabled: false
 
 
 #DevOps
-devops_enabled: False
+devops_enabled: false
 jenkins_memory_lim: "8Gi"
 jenkins_memory_req: "4Gi"
 jenkins_volume_size: "8Gi"
-sonarqube_enabled: False
+sonarqube_enabled: false
 #sonar_server_url: SHOULD_BE_REPLACED
 #sonar_server_token: SHOULD_BE_REPLACED
 
 
 #Metrics-Server
-metrics_server_enabled: False
+metrics_server_enabled: false
 #OpenPitrix
-openpitrix_enabled: False
+openpitrix_enabled: false
 # ServiceMesh:
-servicemesh_enabled: False
+servicemesh_enabled: false
 # Notification
-notification_enabled: False
+notification_enabled: false
 # Alerting
-alerting_enabled: False
+alerting_enabled: false
 
 
 # Harbor
