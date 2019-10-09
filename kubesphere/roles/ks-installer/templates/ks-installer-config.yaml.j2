@@ -77,12 +77,12 @@ data:
       enabled: {{ openpitrix_enabled }}
 
     devops:
-      enabled: False
+      enabled: {{ devops_enabled }}
       jenkinsMemoryLim: {{ jenkins_memory_lim }}
       jenkinsMemoryReq: {{ jenkins_memory_req }}
       jenkinsVolumeSize: {{ jenkins_volume_size }}
       sonarqube:
-        enabled: False
+        enabled: {{ sonarqube_enabled }}
 
     servicemesh:
       enabled: {{ servicemesh_enabled }}
