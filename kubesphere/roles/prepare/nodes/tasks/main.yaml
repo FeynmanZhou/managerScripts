@@ -57,13 +57,13 @@
   failed_when: "import.stderr and 'already' not in import.stderr"
 
 - name: Labeling master nodes
-  shell: "{{ bin_dir }}/kubectl label node {{ inventory_hostname }} role=master"
+  shell: "{{ bin_dir }}/kubectl label node {{ inventory_hostname }} node-role.kubernetes.io/master="
   when: inventory_hostname in groups['kube-master']
   register: import
   failed_when: "import.stderr and 'already' not in import.stderr"
 
 - name: Labeling worker nodes
-  shell: "{{ bin_dir }}/kubectl label node {{ inventory_hostname }} role=node"
+  shell: "{{ bin_dir }}/kubectl label node {{ inventory_hostname }} node-role.kubernetes.io/worker="
   when: (inventory_hostname in groups['kube-node']) and (inventory_hostname not in groups['kube-master'])
   register: import
   failed_when: "import.stderr and 'already' not in import.stderr"
