@@ -87,7 +87,7 @@
     unsafe_writes: yes
     marker: "# Harbor domain {mark}"
   when: 
-    - harbor_enable == true
+    - harbor_enabled == true
 
 - name: Adding gitlab domain into hosts file
   blockinfile:
@@ -99,4 +99,4 @@
     unsafe_writes: yes
     marker: "# Gitlab domain {mark}"
   when: 
-    - gitlab_enable == true
+    - gitlab_enabled == true

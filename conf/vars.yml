@@ -208,10 +208,10 @@ alerting_enabled: false
 
 
 # Harbor
-harbor_enable: false
+harbor_enabled: false
 harbor_domain: harbor.devops.kubesphere.local
 # GitLab
-gitlab_enable: false
+gitlab_enabled: false
 gitlab_hosts_domain: devops.kubesphere.local
 
 
