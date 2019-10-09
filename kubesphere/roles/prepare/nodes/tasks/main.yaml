@@ -74,7 +74,7 @@
   register: import
   failed_when: "import.stderr and 'already' not in import.stderr"
   when: 
-    - qingcloud_lb_enable == true
+    - qingcloud_lb_enabled == true
 
 
 - name: Adding harbor domain into hosts file

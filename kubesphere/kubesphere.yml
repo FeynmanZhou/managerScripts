@@ -27,7 +27,7 @@
 #    - { role: storages/LocalVolume, when: "local_volume_provisioner_enabled == true" }
     - { role: storages/GlusterFS, when: "glusterfs_provisioner_enabled == true" }
     - { role: storages/CephRBD, when: "ceph_rbd_enabled == true" }
-    - { role: storages/NFS-Client, when: "nfs_client_enable == true" }
+    - { role: storages/NFS-Client, when: "nfs_client_enabled == true" }
 #    - { role: VPA, when: "vertical_pod_autoscaler_enable == true" }
 
 - hosts: etcd[0]
@@ -37,5 +37,5 @@
 - hosts: kube-master[0]
   roles:
     - kubesphere-defaults
-    - { role: qingcloud_controller_manager, when: "qingcloud_lb_enable == true" }
+    - { role: qingcloud_controller_manager, when: "qingcloud_lb_enabled == true" }
     - ks-installer

@@ -63,7 +63,7 @@ ceph_rbd_imageFormat: 1
 #ceph_rbd_imageFeatures: layering
 
 # nfs-client
-nfs_client_enable: false
+nfs_client_enabled: false
 #nfs_client_is_default_class: false
 # Hostname of the NFS server(ip or hostname)
 nfs_server: SHOULD_BE_REPLACED
