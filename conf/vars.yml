@@ -16,7 +16,7 @@ qingcloud_connection_timeout: 30
 
 ## If you want to use QingCloud LoadBlancer Plugin, please reference the documentation for installation instructions.
 ## https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/qingcloud-lb
-qingcloud_lb_enable: false
+qingcloud_lb_enabled: false
 qingcloud_vxnet_id: SHOULD_BE_REPLACED
 
 ######################################################################

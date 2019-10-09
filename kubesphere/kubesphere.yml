@@ -37,4 +37,5 @@
 - hosts: kube-master[0]
   roles:
     - kubesphere-defaults
+    - { role: qingcloud_controller_manager, when: "qingcloud_lb_enable == true" }
     - ks-installer
