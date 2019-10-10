@@ -22,7 +22,7 @@
   with_items:
     - { name: kube-cloud-controller-manager, file: kube-cloud-controller-manager.yaml, type: deploy }
     - { name: config, file: config.yaml, type: config }
-    - { name: qingcloud, file: qingcloud.config, type: config }
+    - { name: qingcloud, file: qingcloud.yaml, type: config }
 
 - name: cloud-controller-manager | Creating cloud-controller-manager cm (1)
   shell: >
@@ -34,8 +34,8 @@
 
 - name: cloud-controller-manager | Creating cloud-controller-manager cm (2)
   shell: >
-    {{ bin_dir }}/kubectl --namespace=kube-system create configmap qingcloud-lb
-    --from-file=qingcloud.conf={{ kubesphere_dir }}/cloud-controller-manager/qingcloud.config
+    {{ bin_dir }}/kubectl --namespace=kube-system create configmap lbconfig
+    --from-file=qingcloud.yaml={{ kubesphere_dir }}/cloud-controller-manager/qingcloud.yaml
   register: import 
   failed_when: "import.stderr and 'AlreadyExists' not in import.stderr"
 
