@@ -217,8 +217,9 @@ function all-in-one(){
                    -e is_allinone=true \
                    -e prometheus_replica=1 \
                    -e ks_console_replicas=1 \
-                   -e JavaOpts_Xms='-Xms512m' \
-                   -e JavaOpts_Xmx='-Xmx512m' \
+                   -e jenkinsJavaOpts_Xms='512m' \
+                   -e jenkinsJavaOpts_Xmx='512m' \
+                   -e jenkinsJavaOpts_MaxRAM = '2g' \
                    -e jenkins_memory_lim="2Gi" \
                    -e jenkins_memory_req="800Mi" \
                    -e elasticsearch_data_replica=1

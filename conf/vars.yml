@@ -187,9 +187,12 @@ logsidecar_injector_enabled: false
 
 #DevOps
 devops_enabled: false
-jenkins_memory_lim: "8Gi"
-jenkins_memory_req: "4Gi"
-jenkins_volume_size: "8Gi"
+jenkins_memory_lim: 8Gi
+jenkins_memory_req: 4Gi
+jenkins_volume_size: 8Gi
+jenkinsJavaOpts_Xms: 3g
+jenkinsJavaOpts_Xmx: 6g
+jenkinsJavaOpts_MaxRAM: 8g
 sonarqube_enabled: false
 #sonar_server_url: SHOULD_BE_REPLACED
 #sonar_server_token: SHOULD_BE_REPLACED
