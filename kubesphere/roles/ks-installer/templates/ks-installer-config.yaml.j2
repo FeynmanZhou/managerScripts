@@ -81,6 +81,10 @@ data:
       jenkinsMemoryLim: {{ jenkins_memory_lim }}
       jenkinsMemoryReq: {{ jenkins_memory_req }}
       jenkinsVolumeSize: {{ jenkins_volume_size }}
+{% if JavaOpts_Xms is defined or JavaOpts_Xmx is defined -%}
+      JavaOpts_Xms: {{ JavaOpts_Xms }}
+      JavaOpts_Xmx: {{ JavaOpts_Xmx }}
+{%- else -%}
       sonarqube:
         enabled: {{ sonarqube_enabled }}
 
